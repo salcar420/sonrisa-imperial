@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonrisa Imperial · Clínica Dental</title>
+  <meta name="description" content="Sonrisa Imperial, clínica dental. Agenda tu cita en minutos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1c2430;
+      --muted: #6b7380;
+      --line: #e6e2da;
+      --bg: #faf8f4;
+      --card: #ffffff;
+      --gold: #b08d57;
+      --gold-dark: #8f7043;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      font-weight: 400;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 6vw;
+    }
+    .logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo svg { width: 26px; height: 26px; color: var(--gold); }
+    header a.tel {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    header a.tel:hover { color: var(--ink); }
+
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 6vw;
+      align-items: center;
+      padding: 4vh 6vw 8vh;
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.75rem;
+      color: var(--gold-dark);
+      font-weight: 500;
+    }
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      margin: 18px 0 22px;
+    }
+    h1 em { font-style: italic; color: var(--gold-dark); }
+    .lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 30em;
+      font-weight: 300;
+    }
+    .points {
+      list-style: none;
+      margin-top: 36px;
+      display: grid;
+      gap: 14px;
+    }
+    .points li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+    .points li::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 44px 40px;
+      box-shadow: 0 20px 50px -30px rgba(28, 36, 48, 0.25);
+    }
+    .card h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      font-size: 1.9rem;
+      margin-bottom: 4px;
+    }
+    .card .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 28px; }
+
+    form { display: grid; gap: 18px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    input, select {
+      width: 100%;
+      font: inherit;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: 8px 0;
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+      appearance: none;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b7380'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 2px center;
+      cursor: pointer;
+    }
+    input:focus, select:focus { border-color: var(--gold); }
+
+    button {
+      margin-top: 10px;
+      font: inherit;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      color: #fff;
+      background: var(--ink);
+      border: none;
+      padding: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+    button:hover { background: var(--gold-dark); }
+    button:disabled { opacity: 0.6; cursor: wait; }
+
+    .success { display: none; text-align: center; padding: 30px 0; }
+    .success.show { display: block; }
+    .success .check {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      display: grid; place-items: center;
+      margin: 0 auto 20px;
+      font-size: 1.5rem;
+    }
+    .success p { color: var(--muted); margin-top: 8px; }
+
+    footer {
+      text-align: center;
+      padding: 24px 6vw;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 860px) {
+      main { grid-template-columns: 1fr; gap: 48px; padding-top: 2vh; }
+      .card { padding: 32px 24px; }
+      header a.tel { display: none; }
+    }
+    @media (max-width: 460px) {
+      .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 10H5L3 8z"/>
+      </svg>
+      Sonrisa Imperial
+    </div>
+    <a class="tel" href="tel:+520000000000">+52 000 000 0000</a>
+  </header>
+
+  <main>
+    <section>
+      <span class="eyebrow">Clínica Dental</span>
+      <h1>Una sonrisa que <em>merece</em> cuidado de excelencia.</h1>
+      <p class="lead">Atención dental personalizada, en un espacio tranquilo y con especialistas que te escuchan. Agenda tu cita en menos de un minuto.</p>
+      <ul class="points">
+        <li>Primera valoración sin costo</li>
+        <li>Especialistas certificados</li>
+        <li>Horarios flexibles, lunes a sábado</li>
+      </ul>
+    </section>
+
+    <section class="card" id="agendar">
+      <div id="formWrap">
+        <h2>Agenda tu cita</h2>
+        <p class="sub">Te confirmaremos por teléfono o correo.</p>
+        <form id="bookingForm" novalidate>
+          <div>
+            <label for="nombre">Nombre completo</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+          </div>
+          <div class="row">
+            <div>
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" name="telefono" type="tel" autocomplete="tel" required>
+            </div>
+            <div>
+              <label for="email">Correo</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="fecha">Fecha</label>
+              <input id="fecha" name="fecha" type="date" required>
+            </div>
+            <div>
+              <label for="hora">Hora</label>
+              <select id="hora" name="hora" required>
+                <option value="">Selecciona</option>
+                <option>09:00</option><option>10:00</option><option>11:00</option>
+                <option>12:00</option><option>13:00</option><option>16:00</option>
+                <option>17:00</option><option>18:00</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="motivo">Motivo de la visita</label>
+            <select id="motivo" name="motivo" required>
+              <option value="">Selecciona</option>
+              <option>Valoración general</option>
+              <option>Limpieza dental</option>
+              <option>Blanqueamiento</option>
+              <option>Ortodoncia</option>
+              <option>Implantes</option>
+              <option>Urgencia / dolor</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+          <button type="submit">Confirmar cita</button>
+          <p id="errorMsg" style="color:#c0544b;font-size:0.85rem;text-align:center;min-height:1em"></p>
+        </form>
+      </div>
+
+      <div class="success" id="success" role="status" aria-live="polite">
+        <div class="check">✓</div>
+        <h2>¡Cita solicitada!</h2>
+        <p id="successMsg"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Sonrisa Imperial · Clínica Dental</footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // No permitir fechas pasadas
+    const fecha = document.getElementById("fecha");
+    fecha.min = new Date().toISOString().split("T")[0];
+
+    const form = document.getElementById("bookingForm");
+    // Las citas llegan por correo vía FormSubmit (formsubmit.co)
+    const ENDPOINT = "https://formsubmit.co/ajax/jalonzosc@gmail.com";
+    const btn = form.querySelector("button");
+    const errorMsg = document.getElementById("errorMsg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      let ok = true;
+      form.querySelectorAll("[required]").forEach((el) => {
+        const valid = el.checkValidity() && el.value.trim() !== "";
+        el.style.borderColor = valid ? "" : "#c0544b";
+        if (!valid) ok = false;
+      });
+      if (!ok) return;
+
+      const data = Object.fromEntries(new FormData(form));
+      const [y, m, d] = data.fecha.split("-");
+
+      btn.disabled = true;
+      btn.textContent = "Enviando…";
+      errorMsg.textContent = "";
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            _subject: `Nueva cita: ${data.nombre} · ${d}/${m}/${y} ${data.hora}`,
+            _template: "table",
+            _captcha: "false",
+            Nombre: data.nombre,
+            Teléfono: data.telefono,
+            Correo: data.email,
+            Fecha: `${d}/${m}/${y}`,
+            Hora: data.hora,
+            Motivo: data.motivo,
+            _replyto: data.email,
+            _honey: data._honey || "",
+          }),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || String(json.success) === "false") throw new Error(json.message || res.status);
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = "Confirmar cita";
+        errorMsg.textContent = "No pudimos enviar tu solicitud. Intenta de nuevo o llámanos.";
+        return;
+      }
+
+      document.getElementById("successMsg").textContent =
+        `Gracias, ${data.nombre.split(" ")[0]}. Te esperamos el ${d}/${m}/${y} a las ${data.hora}. Te contactaremos para confirmar.`;
+      document.getElementById("formWrap").style.display = "none";
+      document.getElementById("success").classList.add("show");
+    });
+  </script>
+</body>
+</html>
